@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Kuih</title>
+</head>
+<body>
+    <form action="/add" method="POST">
+        <input type="text" name="kuihName" placeholder="Kuih Name">
+        <textarea name="about" placeholder="About the Kuih"></textarea>
+        <textarea name="ingredients" placeholder="enter ingredients&#10;Format: quantity1-ingredient1,quantity2-ingredient2"></textarea>
+        <textarea name="recipe" placeholder="Recipe&#10;Separate each step with a /. Format: Step1/step2/step3"></textarea>
+        <input type="checkbox" name="puzzle" value="true">
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>

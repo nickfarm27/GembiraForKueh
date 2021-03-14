@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle</title>
+    <link rel='icon' href='/images/favicon.ico' type='image/x-icon'>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+ 
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="body-container">
+        
+        <div class="header-navbar puzzle-header">
+            <a href="/<%= kuihId %>" class="back-link puzzle-back-link">
+                <i class="fas fa-chevron-left fa-2x"></i> <p>Go Back</p>
+            </a>
+            <h1 class="kuih-name"><%= name %></h1>
+        </div>
+
+        <div class="puzzle-container">
+            <div class="puzzle-container-flexbox">
+                <div class="puzzle">
+                    <div class="cover">
+                        <button id="start-puzzle-button">Start Puzzle</button>
+                    </div>
+
+                    <div class="puzzle-row">
+                        <div class="tl dropzone droppable"></div>
+                        <div class="tm1 dropzone droppable"></div>
+                        <div class="tm2 dropzone droppable"></div>
+                        <div class="tm3 dropzone droppable"></div>
+                        <div class="tm4 dropzone droppable"></div>
+                        <div class="tr dropzone droppable"></div>
+                    </div>
+                    <div class="puzzle-row">
+                        <div class="uml dropzone droppable"></div>
+                        <div class="umm1 dropzone droppable"></div>
+                        <div class="umm2 dropzone droppable"></div>
+                        <div class="umm3 dropzone droppable"></div>
+                        <div class="umm4 dropzone droppable"></div>
+                        <div class="umr dropzone droppable"></div>
+                    </div>
+                    <div class="puzzle-row">
+                        <div class="lml dropzone droppable"></div>
+                        <div class="lmm1 dropzone droppable"></div>
+                        <div class="lmm2 dropzone droppable"></div>
+                        <div class="lmm3 dropzone droppable"></div>
+                        <div class="lmm4 dropzone droppable"></div>
+                        <div class="lmr dropzone droppable"></div>
+                    </div>
+                    <div class="puzzle-row">
+                        <div class="bl dropzone droppable"></div>
+                        <div class="bm1 dropzone droppable"></div>
+                        <div class="bm2 dropzone droppable"></div>
+                        <div class="bm3 dropzone droppable"></div>
+                        <div class="bm4 dropzone droppable"></div>
+                        <div class="br dropzone droppable"></div>
+                    </div>
+                </div>
+                
+                <div class="timer-puzzle-container">
+                    <p id="timer">02:30</p>
+                    <button id="pause-countdown"><i class="fas fa-pause fa-lg"></i></button>
+                    <div class="puzzle-piece-box">
+                        <div class="tl draggable puzzle-piece">tl</div>
+                        <div class="tm1 draggable puzzle-piece">tm1</div>
+                        <div class="tm2 draggable puzzle-piece">tm2</div>
+                        <!-- <div class="tm3 draggable puzzle-piece">tm3</div>
+                        <div class="tm4 draggable puzzle-piece">tm4</div>
+                        <div class="tr draggable puzzle-piece">tr</div>
+
+                        <div class="uml draggable puzzle-piece">uml</div>
+                        <div class="umm1 draggable puzzle-piece">umm1</div>
+                        <div class="umm2 draggable puzzle-piece">umm2</div>
+                        <div class="umm3 draggable puzzle-piece">umm3</div>
+                        <div class="umm4 draggable puzzle-piece">umm4</div>
+                        <div class="umr draggable puzzle-piece">umr</div>
+
+                        <div class="lml draggable puzzle-piece">lml</div>
+                        <div class="lmm1 draggable puzzle-piece">lmm1</div>
+                        <div class="lmm2 draggable puzzle-piece">lmm2</div>
+                        <div class="lmm3 draggable puzzle-piece">lmm3</div>
+                        <div class="lmm4 draggable puzzle-piece">lmm4</div>
+                        <div class="lmr draggable puzzle-piece">lmr</div>
+
+                        <div class="bl draggable puzzle-piece">bl</div>
+                        <div class="bm1 draggable puzzle-piece">bm1</div>
+                        <div class="bm2 draggable puzzle-piece">bm2</div>
+                        <div class="bm3 draggable puzzle-piece">bm3</div>
+                        <div class="bm4 draggable puzzle-piece">bm4</div>
+                        <div class="br draggable puzzle-piece">br</div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="times-up-overlay" class="overlay hide">
+            <div id="times-up-content" class="content">
+                <h2>Times Up!</h2>
+                <p><i class="fas fa-frown fa-7x"></i></p>
+                <p>You didn't beat the clock! No kuih for you :(</p>
+                <div class="times-up-buttons">
+                    <button><a href="/<%= kuihId %>/puzzle">Play Again</a></button>
+                    <button class="exit-button"><a href="/<%= kuihId %>">Exit</a></button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="congratulations-overlay" class="overlay hide">
+            <div id="congratulations-content" class="content">
+                <h2>Congratulations!</h2>
+                <p>You managed to get that kuih!</p>
+                <p id="score"></p>
+                <p><i class="fas fa-laugh-beam fa-7x"></i></p>
+                <form action="/updatescore" method="POST">
+                    <input id="text-input" type="text" name="username" placeholder="Enter your winning name" autocomplete="off" spellcheck="false" required>
+                    <input type="hidden" name="kuihName" value="<%= name %>">
+                    <input type="hidden" id="form-score" name="score"">
+                    <button id="score-submit-button" type="submit">Submit</button>
+                </form>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    
+    <script src="/js/main.js"></script>
+</body>
+</html>
