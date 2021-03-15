@@ -14,7 +14,7 @@
 <body class="beige-theme">
     <div class="header-navbar blog-header">
         <a href="/" class="back-link blog-back-link">
-            <i class="fas fa-chevron-left fa-2x"></i> <p>Go Back</p>
+            <!-- <i class="fas fa-home fa-2x"></i> --><i class="fas fa-chevron-left fa-2x"></i> <p>Home</p>
         </a>
         <h1><%= kuih.name %></h1>
         <% if (kuih.puzzle) { %>
@@ -22,6 +22,8 @@
             <button id="blog-start-puzzle-icon" class="blog-start-button"><a href="/<%= kuih.kuihId %>/puzzle"><i class="fas fa-dice-d6"></i></a></button>
         <% } %>
     </div>
+    
+    <img src="/images/allkuih/<%= kuih.kuihId %>.png" alt="<%= kuih.name %>" width="60%">
 
     <div class="blog-container">
         <h1>Background</h1>
