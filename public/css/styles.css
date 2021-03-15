@@ -474,6 +474,11 @@ body {
     color: white;
 }
 
+.scoreboard-header h1 {
+    width: 80%;
+    margin: auto;
+}
+
 .btn-group {
     margin: 30px 0;
     width: 100% !important;

@@ -61,22 +61,40 @@ app.get("/directory", (req, res) => {
 });
 
 app.get("/scoreboard", (req, res) => {
-    res.redirect("/scoreboard/kuihlapis")
+    Kuih.find({puzzle: true}, (err, foundKuihs) => {
+        if (!err) {
+            Score.find({}, null, {sort: {score: 1}}, (error, foundScores) => {
+                if (!error) {
+                    res.render("scoreboard", {scores: foundScores, kuihs: foundKuihs, all: true});
+                }
+            });
+        } else {
+            res.redirect("/");
+        }
+    });
 });
 
 app.get("/scoreboard/:kuih", (req, res) => {
     const kuihId = req.params.kuih.toLowerCase().replace(/ /g,'');
 
-    Kuih.find({puzzle: true}, (err, foundKuihs) => {
-        Kuih.findOne({kuihId: kuihId}, (err, kuih) => {
-            if (!err) {
-                Score.find({kuihName: kuih.name}, null, {sort: {score: 1}}, (error, foundScores) => {
-                    if (!error) {
-                        res.render("scoreboard", {scores: foundScores, kuihs: foundKuihs});
-                    }
-                });
-            }
-        });
+    Kuih.find({puzzle: true}, (err1, foundKuihs) => {
+        if (!err1) {
+            Kuih.findOne({kuihId: kuihId}, (err2, kuih) => {
+                if (!err2) {
+                    Score.find({kuihName: kuih.name}, null, {sort: {score: 1}}, (err3, foundScores) => {
+                        if (!err3) {
+                            res.render("scoreboard", {scores: foundScores, kuihs: foundKuihs, kuihName: kuih.name, all: false});
+                        } else {
+                            res.redirect("/scoreboard");
+                        }
+                    });
+                } else {
+                    res.redirect("/scoreboard");
+                }
+            });
+        } else {
+            res.redirect("/scoreboard");
+        }
     });
 });
 
