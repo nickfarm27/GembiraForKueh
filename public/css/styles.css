@@ -1,6 +1,10 @@
 @import url('https:fonts.googleapis.com/css?family=Poppins:600,800');
 @import url('https:fonts.googleapis.com/css?family=Poppins');
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -154,12 +158,6 @@ body {
 }
 
 
-
-
-
-
-
-
 .puzzle-piece {
     position: absolute;
     width: 128px;
@@ -234,10 +232,6 @@ body {
     width: 130px;
     height: 130px;
 }
-
-
-
-
 
 
 
@@ -347,21 +341,11 @@ body {
     border: 2px solid #946EA7 !important;
 }
 
-
-
-/* #congratulations-content p i {
-    color: #E4B8B6;
-} */
-
 .hide {
     display: none;
 }
 
-
-
-
 /*? BLOG ========================================================================================= */
-
 
 .beige-theme {
     background-color: #FEF8C7;
@@ -460,7 +444,6 @@ body {
 .about-kuih {
     text-align: center !important;
 }
-
 
 /*? SCOREBOARD ======================================================================= */
 
@@ -692,12 +675,132 @@ tr:last-child td:last-child {
 	background-color: #E88B2C;
 }
 
+#start-button:focus {
+    box-shadow: none;
+}
+
 .kuih-modal a img {
     margin: 10px 0;
     border-radius: 10px;
 }
 
 /*? END OF HOME PAGE ============================================================================= */
+
+/*? DIRECTORY PAGE =============================================================================== */
+
+.directory-header {
+    background-color: #CCB5E3;
+    color: #602680;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.4);
+}
+
+.purple-theme {
+    background-color: #CCB5E3;
+    text-align: center;
+}
+
+.directory-back-link {
+    color: #602680;
+}
+
+.directory-back-link p {
+    color: #602680;
+}
+
+.directory-back-link:hover {
+    color: #703491;
+}
+
+.alphabets {
+    background-color: #602680;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    padding: 6px 0;
+    box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.2) inset;
+}
+
+.alphabets a {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 600;
+    margin: 5px 10px;
+}
+
+.alphabets a:hover {
+    color: #e9bfff;
+    text-decoration: underline;
+}
+
+.alphabet {
+    display: inline-flex;
+    color: white;
+    background-color: #602680;
+    width: 60px;
+    height: 60px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.alphabet p {
+    margin: 0 !important;
+}
+
+.all-kuih {
+    width: 80%;
+    margin: auto;
+}
+
+.alphabet-kuih-container {
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+
+.alphabet-kuih-container:last-child {
+    padding-bottom: 150px;
+}
+
+.kuih-container {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.image-kuih {
+    padding: 20px 20px 0;
+}
+
+.image-kuih a {
+    color: #602680;
+}
+
+.image-kuih a:hover {
+    color: #401955;
+    text-decoration: none;
+}
+
+.image-kuih img {
+    width: 180px;
+    border-radius: 10px;
+    transition: transform .5s ease;
+    padding: 5px;
+}
+
+.image-kuih a:hover img {
+    transform: scale(1.05);
+}
+
+.image-kuih p {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 5px 0 0 0;
+}
+
+/*? END OF DIRECTORY PAGE ======================================================================== */
 
 @media (max-width: 576px) {
     .landing-text h1 {
@@ -714,6 +817,14 @@ tr:last-child td:last-child {
 
     #blog-start-puzzle-start {
         display: none;
+    }
+
+    .all-kuih {
+        width: 100%;
+    }
+
+    .image-kuih img {
+        width: 130px;
     }
 }
 

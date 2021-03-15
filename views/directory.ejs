@@ -11,44 +11,41 @@
  
     <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
+<body class="purple-theme">
     <div class="header-navbar directory-header">
         <a href="/" class="back-link directory-back-link">
-            <i class="fas fa-chevron-left fa-2x"></i> <p>Go Back</p>
+            <i class="fas fa-chevron-left fa-2x"></i> <p>Home</p>
         </a>
         <h1>Directory</h1>
     </div>
 
+    <% const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("") %> 
 
-    <!-- <div class="puzzle-navbar">
-        <button class="back-button">
-            <i class="fas fa-chevron-left fa-2x"></i> <p>Go Back</p>
-        </button>
-        
-        <h1>Directory</h1>
-    </div> -->
     <div class="alphabets">
-        <% const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("") %> 
-
         <% alphabets.forEach(alphabet => { %>
             <a href="#<%= alphabet %>"><%= alphabet %></a>
         <% }) %>
-        
+    </div>
+
+    <div class="all-kuih">
         <% alphabets.forEach(alphabet => { %>
-            <div><%= alphabet %></div>
-            <div>
-            <% kuihs.forEach(kuih => { %>
-                <% const kuihWordings = kuih.name.split(" ") %>
-                <% kuihWordings.forEach(kuihWord => { %>
-                    <% if (alphabet.toLowerCase() === kuihWord.charAt(0).toLowerCase()) { %>
-                        <div>
-                            <img src="/images/<%= kuih.kuihId %>.png" alt="<%= kuih.name %>">
-                            <p><%= kuih.name %></p>
-                        </div>
-                    <% } %>
-                <% }) %>
-                
-            <% }) %>
+            <div class="alphabet-kuih-container">
+                <div id="<%= alphabet %>" class="alphabet"><p><%= alphabet %></p></div>
+                <div class="kuih-container">
+                    <% kuihs.forEach(kuih => { %>
+                        <% const kuihWordings = kuih.name.split(" ") %>
+                        <% kuihWordings.forEach(kuihWord => { %>
+                            <% if (alphabet.toLowerCase() === kuihWord.charAt(0).toLowerCase()) { %>
+                                <div class="image-kuih">
+                                    <a href="/<%= kuih.kuihId %>">
+                                        <img src="/images/allkuihsquare/<%= kuih.kuihId %>.png" alt="<%= kuih.name %>">
+                                        <p><%= kuih.name %></p>
+                                    </a>
+                                </div>
+                            <% } %>
+                        <% }) %>
+                    <% }) %>
+                </div>
             </div>
         <% }) %>
     </div>

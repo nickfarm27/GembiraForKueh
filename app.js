@@ -55,9 +55,10 @@ app.get("/directory", (req, res) => {
     Kuih.find({}, null, {sort: {name: 1}}, (err, foundKuihs) => {
         if (!err) {
             res.render("directory", {kuihs: foundKuihs});
+        } else {
+            res.redirect("/");
         }
     });
-
 });
 
 app.get("/scoreboard", (req, res) => {
