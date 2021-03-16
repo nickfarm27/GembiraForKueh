@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/compose", (req, res) => {
+app.get("/composethekuih", (req, res) => {
     res.render("compose");
 });
 
@@ -164,7 +164,7 @@ app.post("/updatescore", (req, res) => {
     const {username, kuihName, score} = req.body;
 
     if (badWordFilter.list.includes(username)) {
-        res.send("Your score will not be updated as your username contains profanities");
+        res.send("Your score will not be updated as your username contains profanities. Press the browser's back button to return.");
     } else {
         Score.findOne({username: username, kuihName: kuihName}, (err, foundScore) => {
             if (!err) {

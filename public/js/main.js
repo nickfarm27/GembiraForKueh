@@ -9,7 +9,6 @@ let startTime = 0;
 let totalPausedDuration = 0;
 let timer = null;
 
-
 const kuihName = document.querySelector(".kuih-name").innerText.toLowerCase().replace(/ /g,'');
 document.querySelectorAll(".puzzle-piece").forEach(puzzlePiece => {
     puzzlePiece.style.backgroundImage = `url(/images/${kuihName}/${puzzlePiece.classList[0]}.png)`;
@@ -27,7 +26,7 @@ function startPuzzle() {
     startTime = Date.now();
     let pausedTime = 0;
     let isPaused = false;
-    let endingTime = startTime + 150000;
+    let endingTime = startTime + 180000;
 
     refreshDraggables();
     document.getElementById("start-puzzle-button").innerText = "Resume Puzzle";
@@ -90,9 +89,9 @@ function refreshDraggables() {
     if (draggables === [] || draggables.length == 0) {
         calculateScore();
         document.getElementById("congratulations-overlay").classList.remove("hide");
-        document.querySelectorAll(".dropzone").forEach(element => {
-            element.classList.add("puzzle-solved");
-        });
+        // document.querySelectorAll(".dropzone").forEach(element => {
+        //     element.classList.add("puzzle-solved");
+        // });
     } else {
         draggables.forEach(draggable => {
             makeDraggable(draggable);
@@ -103,7 +102,10 @@ function refreshDraggables() {
 function calculateScore() {
     clearInterval(timer);
     const score = Date.now() - startTime - totalPausedDuration;
-    document.getElementById("score").innerText = score;
+    const minutes = Math.floor((score % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((score % (1000 * 60)) / 1000);
+
+    document.getElementById("score").innerText = "Your Time: 0" + minutes + ":" + String(seconds).padStart(2, "0");
     document.getElementById("form-score").setAttribute("value", score);
 }
 
@@ -116,16 +118,16 @@ function makeDraggable(draggable) {
     draggable.addEventListener("mousedown", mouseDown);
     draggable.addEventListener("touchstart", touchStart);
 
-
     function touchStart(e) {
         //? OPTIONAL ANIMATIONS
-        draggable.style.transitionProperty = "background-color";
+        draggable.style.transitionProperty = "transform";
         draggable.style.transitionDuration = "500ms";
         
         zIndex+=1;
         draggable.style.zIndex = zIndex;
         
         draggable.classList.add("draggable-active");
+        draggable.classList.remove("draggable-wrong");
 
         originalX = draggable.getBoundingClientRect().left;
         originalY = draggable.getBoundingClientRect().top;
@@ -162,13 +164,14 @@ function makeDraggable(draggable) {
 
     function mouseDown(e) {
         //? OPTIONAL ANIMATIONS
-        draggable.style.transitionProperty = "background-color";
+        draggable.style.transitionProperty = "transform";
         draggable.style.transitionDuration = "500ms";
     
         zIndex+=1;
         draggable.style.zIndex = zIndex;
     
         draggable.classList.add("draggable-active");
+        draggable.classList.remove("draggable-wrong");
     
         originalX = draggable.getBoundingClientRect().left;
         originalY = draggable.getBoundingClientRect().top;
@@ -211,7 +214,8 @@ function makeDraggable(draggable) {
 
         draggable.style.left = 0;
         draggable.style.top = 0;
-
+        
+        this.classList.add("draggable-wrong");
         if (currentDroppable) {
             if (currentDroppable.childElementCount > 0) {
                 if (this.parentElement.classList[0] !== "puzzle-piece-box") {
@@ -221,11 +225,13 @@ function makeDraggable(draggable) {
                     //* NEW - check if the swapped puzzle piece is in the correct position
                     if (this.parentElement.lastElementChild.classList[0] === this.parentElement.classList[0]) {
                         this.parentElement.lastElementChild.classList.remove("draggable");
+                        this.parentElement.lastElementChild.classList.remove("draggable-wrong");
                         this.parentElement.classList.remove("droppable");
                     }
 
                 } else {
                     append = false;
+                    this.classList.remove("draggable-wrong");
                 }
             }
 
@@ -239,9 +245,14 @@ function makeDraggable(draggable) {
             if (currentDroppable.classList[0] === this.classList[0] && append) {
                 currentDroppable.classList.remove("droppable");
                 this.classList.remove("draggable");             //* NEW
+                this.classList.remove("draggable-wrong");             //* NEW
             }
             //* NEW
             checkPuzzle(); //? Checks if the puzzle is complete
+        }
+
+        if (this.parentElement.classList[0] === "puzzle-piece-box") {
+            this.classList.remove("draggable-wrong");
         }
     
         draggable.removeEventListener("mouseup", mouseUp);      //* Still needed if draggable didn't drop on a droppable

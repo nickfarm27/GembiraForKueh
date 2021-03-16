@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GembiraForKueh - <%= kuih.name %></title>
+    <title><%= kuih.name %> - Gembira For Kueh</title>
     <link rel='icon' href='/images/favicon.ico' type='image/x-icon'>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -14,7 +14,7 @@
 <body class="beige-theme">
     <div class="header-navbar blog-header">
         <a href="/directory" class="back-link blog-back-link">
-            <!-- <i class="fas fa-home fa-2x"></i> --><i class="fas fa-chevron-left fa-2x"></i> <p>Directory</p>
+            <i class="fas fa-chevron-left fa-2x"></i> <p>Directory</p>
         </a>
         <h1><%= kuih.name %></h1>
         <% if (kuih.puzzle) { %>
