@@ -47,9 +47,9 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/composethekuih", (req, res) => {
-    res.render("compose");
-});
+// app.get("/composethekuih", (req, res) => {
+//     res.render("compose");
+// });
 
 app.get("/directory", (req, res) => {
     Kuih.find({}, null, {sort: {name: 1}}, (err, foundKuihs) => {
