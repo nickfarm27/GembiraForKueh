@@ -11,7 +11,7 @@ let timer = null;
 
 const kuihName = document.querySelector(".kuih-name").innerText.toLowerCase().replace(/ /g,'');
 document.querySelectorAll(".puzzle-piece").forEach(puzzlePiece => {
-    puzzlePiece.style.backgroundImage = `url(/images/${kuihName}/${puzzlePiece.classList[0]}.png)`;
+    puzzlePiece.style.backgroundImage = `url(/images/${kuihName}/${puzzlePiece.classList[0]}.jpg)`;
 });
 
 //? To shuffle the puzzle pieces
@@ -251,7 +251,7 @@ function makeDraggable(draggable) {
             checkPuzzle(); //? Checks if the puzzle is complete
         }
 
-        if (this.parentElement.classList[0] === "puzzle-piece-box") {
+        if (this.parentElement !== null && this.parentElement.classList[0] === "puzzle-piece-box") {
             this.classList.remove("draggable-wrong");
         }
     
