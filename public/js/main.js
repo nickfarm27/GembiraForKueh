@@ -9,6 +9,20 @@ let startTime = 0;
 let totalPausedDuration = 0;
 let timer = null;
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+
+$(function () {
+    $('[data-toggle="popover"]').popover()
+});
+
+$(function () {
+    $('.popover-bootstrap').popover({
+      container: 'body'
+    });
+});
+
 const kuihName = document.querySelector(".kuih-name").innerText.toLowerCase().replace(/ /g,'');
 document.querySelectorAll(".puzzle-piece").forEach(puzzlePiece => {
     puzzlePiece.style.backgroundImage = `url(/images/${kuihName}/${puzzlePiece.classList[0]}.jpg)`;
