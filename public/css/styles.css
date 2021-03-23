@@ -1,5 +1,4 @@
 @import url('https:fonts.googleapis.com/css?family=Poppins:600,800');
-@import url('https:fonts.googleapis.com/css?family=Poppins');
 
 html {
     scroll-behavior: smooth;
@@ -934,6 +933,14 @@ tr:last-child td:last-child {
     .puzzle-piece-box {
         width: 52px;
         height: 52px;
+    }
+
+    .blog-container {
+        width: 75%;
+    }
+
+    .about-kuih {
+        text-align: justify !important;
     }
 }
 
